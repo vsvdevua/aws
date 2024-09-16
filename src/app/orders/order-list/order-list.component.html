@@ -1,0 +1,53 @@
+
+<!---->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid d-flex justify-content-center align-items-center">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2 custom-border table-dark" type="search" placeholder="Email" aria-label="Search" title="Search by email"  [(ngModel)]="email" name="searchQuery">
+      <button class="btn custom-search-btn" type="submit" (click)="searchByEmail()">Search</button>
+      <button type="button" class="btn btn-dark" routerLink="create">Create order</button>
+    </form>
+  </div>
+</nav>
+
+
+
+<div class="container mt-4">
+    <table class="table table-dark text-center">
+        <thead>
+          <tr>
+            <th scope="col">Email</th>
+            <th scope="col">City</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">DeliveryDate</th>
+            <th scope="col">Status</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            
+            @for (order of orders; track order) {
+                <tr> 
+                <td>{{ order.email }}</td>
+                <td>{{ order.city }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.deliveryDate }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.notes }}</td>
+                <td><button class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
+                <td><button class="btn btn-outline-danger" (click)="onDelete(order.email)"><i class="far fa-trash-alt"></i> Delete</button></td>
+            </tr> 
+            } 
+           
+        </tbody>
+      </table>
+</div>
+
+

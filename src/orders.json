@@ -1,0 +1,34 @@
+[{
+    "email": "vsv@mail.ua",
+    "name": "Saam Best",
+    "city": "Kiev",
+    "address": "Bankova Sr. 1/3",
+    "phone": "+380977777777",
+    "quantity": 7,
+    "deliveryDate": "09/09/2024",
+    "status": "UNPROCESSED",
+    "notes":""
+},
+{
+    "email": "vsvdev@mail.ua",
+    "name": "Saam Best",
+    "city": "Odessa",
+    "address": "Primorska Sr. 1/3",
+    "phone": "+380977777007",
+    "quantity": 7,
+    "deliveryDate": "09/09/2024",
+    "status": "UNPROCESSED",
+    "notes":""
+},
+{
+    "email": "samd@mail.ua",
+    "name": "Dan Joy",
+    "city": "Lviv",
+    "address": "Nazional Sr. 1/3",
+    "phone": "+3809700077007",
+    "quantity": 10,
+    "deliveryDate": "15/09/2024",
+    "status": "UNPROCESSED",
+    "notes":""
+}
+]
