@@ -3,19 +3,27 @@ import { Injectable } from '@angular/core';
 import { DeliveryOrder } from '../model/deliveryOrder';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
-  providedIn: 'root'
+providedIn: 'root'
 })
 export class OrderService {
 
-  apiURL = environment.apiURL;
-  constructor(private http: HttpClient) { }
+apiURL = 'https://apimocha.com/vsvdev/orders';
+constructor(private http: HttpClient) { }
 
 
- public getOrdersList(): Observable<DeliveryOrder[]> {
-    return this.http.get<DeliveryOrder[]>(this.apiURL);
-  }
+public getOrdersList(): Observable<DeliveryOrder[]> {
+  return this.http.get<DeliveryOrder[]>(this.apiURL).pipe(
+    map((orders: DeliveryOrder[]) => {
+      // Return a new array without the last element
+      return orders.slice(0, -1);
+    })
+  );
+}
+
 
 
   public getOrderByMail(email: string): Observable<DeliveryOrder> {
