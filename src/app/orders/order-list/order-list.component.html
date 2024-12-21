@@ -17,6 +17,7 @@
         <thead>
           <tr>
             <th scope="col">Email</th>
+            <th scope="col">Name</th>
             <th scope="col">City</th>
             <th scope="col">Address</th>
             <th scope="col">Phone</th>
@@ -34,6 +35,7 @@
             @for (order of orders; track order) {
                 <tr> 
                 <td>{{ order.email }}</td>
+                <td>{{ order.name }}</td>
                 <td>{{ order.city }}</td>
                 <td>{{ order.address }}</td>
                 <td>{{ order.phone }}</td>

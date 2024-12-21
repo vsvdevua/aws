@@ -25,17 +25,44 @@ export class OrderCreateComponent implements OnDestroy{
   private router: Router) { }
  
 
+ // onSubmit() {
+ //   this.submitted = true;
+ //   this.messages = validator(this.order);
+ //   if(this.messages.length === 0){
+ //    this.ordersSubscription = this.orderService.createOrder(this.order)
+ //     .subscribe(data => console.log(data), error => console.log(error));
+  //    this.order = new DeliveryOrder("","","","","",1,"","","" );
+ //     this.router.navigate(['']);
+
+ //   }   
+ // }
+
+
   onSubmit() {
     this.submitted = true;
     this.messages = validator(this.order);
-    if(this.messages.length === 0){
-     this.ordersSubscription = this.orderService.createOrder(this.order)
-      .subscribe(data => console.log(data), error => console.log(error));
-      this.order = new DeliveryOrder("","","","","",1,"","","" );
-      this.router.navigate(['']);
-
-    }   
+  
+    if (this.messages.length === 0) {
+     // console.log('Submitting order:', this.order);  // Log the order to verify it's correct
+  
+      this.ordersSubscription = this.orderService.createOrder(this.order)
+        .subscribe({
+          next: (data) => {
+           // console.log('Order created successfully:', data);  // Log the successful response
+            this.router.navigate(['/']);  // Navigate to the order list or home page after creation
+          },
+          error: (error) => {
+            console.error('Error creating order:', error);  // Log any error
+          }
+        });
+  
+      // Reset the form after submission
+      this.order = new DeliveryOrder("", "", "", "", "", 1, "", "", "");
+    } else {
+      console.log('Validation failed:', this.messages);  // Log validation messages if any
+    }
   }
+  
 
   ngOnDestroy(): void {
     if (this.ordersSubscription) {

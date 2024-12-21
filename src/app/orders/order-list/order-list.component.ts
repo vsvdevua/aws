@@ -22,6 +22,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
   this.orderService.getOrdersList().subscribe(
      data => {
         this.orders = data;
+   //     console.log(this.orders);
       },
       err => console.log(err)
     );
@@ -29,7 +30,17 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
 
   onDelete(email: string): void {
-    this.orderService.deleteOrder(email);
+   // this.orderService.deleteOrder(email);
+   this.orderService.deleteOrder(email).subscribe(
+    response => {
+        //console.log('Order deleted:', response);
+        // Optionally, remove the order from the local list after successful deletion
+        this.orders = this.orders.filter(order => order.email !== email);
+    },
+    error => {
+        console.error('Error deleting order:', error);
+    }
+);
   }
 
   searchByEmail() {
@@ -39,7 +50,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
          data => {
             this.orders = [];
             this.orders.push(data);
-            console.log(this.orders);
+          //  console.log(this.orders);
           },
           
           err => console.log(err)

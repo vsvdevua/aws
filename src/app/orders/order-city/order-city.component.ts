@@ -27,6 +27,7 @@ export class OrderCityComponent implements OnInit, OnDestroy {
       },
       err => console.log(err)
     );
+   // console.log(this.orders);
   }
 
 
@@ -36,7 +37,7 @@ export class OrderCityComponent implements OnInit, OnDestroy {
       this.orderService.getIndexOrder(this.city).subscribe(
          data => {
             this.orders = data;
-            console.log(this.orders);
+         //   console.log(this.orders);
           },
           
           err => console.log(err)

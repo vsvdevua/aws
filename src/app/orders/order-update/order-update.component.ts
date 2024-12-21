@@ -29,7 +29,7 @@ export class OrderUpdateComponent implements OnInit,OnDestroy {
     this.email = this.route.snapshot.params['email'];
     this.ordersSubscription = this.orderService.getOrderByMail(this.email)
     .subscribe(data => {
-      console.log(data)
+     // console.log(data)
       this.order = data;
     }, error => console.log(error));
   }
@@ -46,7 +46,7 @@ export class OrderUpdateComponent implements OnInit,OnDestroy {
       this.order = new DeliveryOrder("","","","","",1,"","","" );
       this.router.navigate(['']);
 
-    }   
+    } 
   }
 
   ngOnDestroy(): void {
