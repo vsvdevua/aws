@@ -44,7 +44,10 @@ export class OrderUpdateComponent implements OnInit,OnDestroy {
      this.ordersSubscription = this.orderService.updateOrder(this.order)
       .subscribe(data => console.log(data), error => console.log(error));
       this.order = new DeliveryOrder("","","","","",1,"","","" );
-      this.router.navigate(['']);
+      setTimeout(() => {
+        this.router.navigate(['']);
+      }, 1000); 
+    //  this.router.navigate(['']);
 
     } 
   }

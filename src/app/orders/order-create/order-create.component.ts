@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class OrderCreateComponent implements OnDestroy{
 
- order: DeliveryOrder = new DeliveryOrder("","","","","",1,"","","");
+ order: DeliveryOrder = new DeliveryOrder("", "", "", "", "", 1, "", "", "empty");
  submitted = false;
  cities = Object.values(Cities);
  statuses = Object.values(Status);
@@ -57,7 +57,7 @@ export class OrderCreateComponent implements OnDestroy{
         });
   
       // Reset the form after submission
-      this.order = new DeliveryOrder("", "", "", "", "", 1, "", "", "");
+      this.order = new DeliveryOrder("", "", "", "", "", 1, "", "", "empty");
     } else {
       console.log('Validation failed:', this.messages);  // Log validation messages if any
     }
