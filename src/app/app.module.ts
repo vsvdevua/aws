@@ -10,6 +10,8 @@ import { OrderUpdateComponent } from './orders/order-update/order-update.compone
 import { OrderCityComponent } from './orders/order-city/order-city.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     OrderListComponent,
     OrderCreateComponent,
     OrderUpdateComponent,
-    OrderCityComponent
+    OrderCityComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

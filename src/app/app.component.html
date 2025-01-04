@@ -22,7 +22,7 @@
        
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item mx-2">
-            <a class="nav-link" aria-current="page" href="/"routerLink="" routerLinkActive="active">Orders</a>
+            <a class="nav-link" aria-current="page" href="/orders"routerLink="orders" routerLinkActive="active">Orders</a>
           </li>
           <li class="nav-item mx-2">
             <a class="nav-link" href="/city" routerLink="city" routerLinkActive="active">Cities</a>
@@ -33,10 +33,10 @@
           </li>
           
           <li class="nav-item mx-2">
-            <a class="nav-link" href="/login">SignUP</a>
+            <a class="nav-link" href="/login" routerLink="login">SignIN</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link" href="/logout">SignOUT</a>
+            <a class="nav-link"  (click)="signOut()">SignOUT</a>
           </li>
         </ul>
       
