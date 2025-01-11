@@ -13,46 +13,42 @@
 
 
 <div class="container mt-4">
-    <table class="table table-dark text-center">
-        <thead>
-          <tr>
-            <th scope="col">Email</th>
-            <th scope="col">Name</th>
-            <th scope="col">City</th>
-            <th scope="col">Address</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">DeliveryDate</th>
-            <th scope="col">Status</th>
-            <th scope="col">Notes</th>
-            <div *ngIf="hasRequiredRoles()">
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </div>
-          </tr>
-        </thead>
-        <tbody>
-          
-            
-            @for (order of orders; track order) {
-                <tr> 
-                <td>{{ order.email }}</td>
-                <td>{{ order.name }}</td>
-                <td>{{ order.city }}</td>
-                <td>{{ order.address }}</td>
-                <td>{{ order.phone }}</td>
-                <td>{{ order.quantity }}</td>
-                <td>{{ order.deliveryDate }}</td>
-                <td>{{ order.status }}</td>
-                <td>{{ order.notes }}</td>
-                <div *ngIf="hasRequiredRoles()">
-                <td><button class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
-                <td><button class="btn btn-outline-danger" (click)="onDelete(order.email)"><i class="far fa-trash-alt"></i> Delete</button></td> 
-                </div>
-                </tr> 
-            } 
-           
-        </tbody>
+  <table class="table table-dark text-center">
+    <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">DeliveryDate</th>
+      <th scope="col">Status</th>
+      <th scope="col">Notes</th>
+      <th *ngIf="hasRequiredRolestoEdit()" scope="col">Edit</th>
+      <th *ngIf="hasRequiredRolestoDelete()" scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    @for (order of orders; track order) {
+    <tr>
+      <td>{{ order.email }}</td>
+      <td>{{ order.name }}</td>
+      <td>{{ order.city }}</td>
+      <td>{{ order.address }}</td>
+      <td>{{ order.phone }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.deliveryDate }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.notes }}</td>
+      <td><button *ngIf="hasRequiredRolestoEdit()" class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
+      <td><button *ngIf="hasRequiredRolestoDelete()" class="btn btn-outline-danger" (click)="onDelete(order.email)"><i class="far fa-trash-alt"></i> Delete</button></td>
+    </tr>
+    }
+
+    </tbody>
       </table>
 </div>
 

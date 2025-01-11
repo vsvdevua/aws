@@ -23,7 +23,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.groups = this.auth.groups;
     if(this.groups.length==1 && this.groups.includes('USER')){
     this,this.email =  this.auth.email;
-      this.ordersSubscription = 
+      this.ordersSubscription =
       this.orderService.getOrderByMail(this.email).subscribe(
          data => {
             this.orders.push(data);
@@ -32,7 +32,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
           err => console.log(err)
         );
     }else{
-      this.ordersSubscription = 
+      this.ordersSubscription =
       this.orderService.getOrdersList().subscribe(
          data => {
             this.orders = data;
@@ -41,7 +41,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
           err => console.log(err)
         );
     }
-  
+
   }
 
 
@@ -61,14 +61,14 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   searchByEmail() {
     if(this.email && this.email!==""){
-      this.ordersSubscription = 
+      this.ordersSubscription =
       this.orderService.getOrderByMail(this.email).subscribe(
          data => {
             this.orders = [];
             this.orders.push(data);
           //  console.log(this.orders);
           },
-          
+
           err => console.log(err)
         );
     }
@@ -80,7 +80,11 @@ export class OrderListComponent implements OnInit, OnDestroy {
    }
   }
 
-  hasRequiredRoles(): boolean {
+  hasRequiredRolestoEdit(): boolean {
+    return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'DELIVER') || this.groups.some(group => group === 'CONSULTANT');
+  }
+
+  hasRequiredRolestoDelete(): boolean {
     return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'CONSULTANT');
   }
 }
