@@ -80,7 +80,11 @@ export class OrderListComponent implements OnInit, OnDestroy {
    }
   }
 
-  hasRequiredRoles(): boolean {
+  hasRequiredRolestoEdit(): boolean {
+    return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'DELIVER') || this.groups.some(group => group === 'CONSULTANT');
+  }
+
+  hasRequiredRolestoDelete(): boolean {
     return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'CONSULTANT');
   }
 }

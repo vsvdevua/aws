@@ -25,10 +25,8 @@
             <th scope="col">DeliveryDate</th>
             <th scope="col">Status</th>
             <th scope="col">Notes</th>
-            <div *ngIf="hasRequiredRoles()">
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </div>
+            <th *ngIf="hasRequiredRolestoEdit()" scope="col">Edit</th>
+            <th *ngIf="hasRequiredRolestoDelete()" scope="col">Delete</th>      
           </tr>
         </thead>
         <tbody>
@@ -45,10 +43,8 @@
                 <td>{{ order.deliveryDate }}</td>
                 <td>{{ order.status }}</td>
                 <td>{{ order.notes }}</td>
-                <div *ngIf="hasRequiredRoles()">
-                <td><button class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
-                <td><button class="btn btn-outline-danger" (click)="onDelete(order.email)"><i class="far fa-trash-alt"></i> Delete</button></td> 
-                </div>
+                <td><button *ngIf="hasRequiredRolestoEdit()" class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
+                <td><button *ngIf="hasRequiredRolestoDelete()" class="btn btn-outline-danger" (click)="onDelete(order.email)"><i class="far fa-trash-alt"></i> Delete</button></td> 
                 </tr> 
             } 
            

@@ -17,10 +17,11 @@ export class OrderService {
   token = '';
 
   constructor(private http: HttpClient, private auth:AuthService) { 
-    this.token = auth.idenToken;
+    this.token = auth.accessToken;
+    console.log("TOKEN: " + this.token);
     this.header = new HttpHeaders({
       "Content-Type":"application/json",
-      Authorization: this.token});
+      Authorization: 'Bearer ' + this.token,});
   }
 
 

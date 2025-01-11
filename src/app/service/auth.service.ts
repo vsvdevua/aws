@@ -13,7 +13,7 @@ export class AuthService {
 
   email:string = '';
 
-  idenToken ='';
+  accessToken ='';
 
   constructor(private service:OidcSecurityService){
 
@@ -30,7 +30,7 @@ export class AuthService {
           this.isAuthent =isAuthenticated;
           this.email = userData.email;
           console.warn('idToken:', idToken);
-          this.idenToken = idToken;
+          this.accessToken = accessToken;
 
           console.log('accessToken:', accessToken);
           
