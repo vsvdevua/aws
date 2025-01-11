@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -20,14 +21,14 @@ import { HomeComponent } from './home/home.component';
     OrderCreateComponent,
     OrderUpdateComponent,
     OrderCityComponent,
-    LoginComponent,
+   // LoginComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
    HttpClientModule, //!!!! Define
-   FormsModule, // !!!! Define
+   FormsModule, AuthConfigModule, // !!!! Define
   ],
   providers: [],
   bootstrap: [AppComponent]

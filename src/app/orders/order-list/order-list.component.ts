@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DeliveryOrder } from '../../model/deliveryOrder';
 import { OrderService } from '../../service/order.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'sv-order-list',
@@ -14,18 +15,33 @@ export class OrderListComponent implements OnInit, OnDestroy {
   orders: DeliveryOrder[] = [];
   email:string = '';
  private ordersSubscription: Subscription = new Subscription();
+ groups:string[] =[];
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, private auth:AuthService) {}
 
   ngOnInit(): void {
-    this.ordersSubscription = 
-  this.orderService.getOrdersList().subscribe(
-     data => {
-        this.orders = data;
-   //     console.log(this.orders);
-      },
-      err => console.log(err)
-    );
+    this.groups = this.auth.groups;
+    if(this.groups.length==1 && this.groups.includes('USER')){
+    this,this.email =  this.auth.email;
+      this.ordersSubscription = 
+      this.orderService.getOrderByMail(this.email).subscribe(
+         data => {
+            this.orders.push(data);
+       //     console.log(this.orders);
+          },
+          err => console.log(err)
+        );
+    }else{
+      this.ordersSubscription = 
+      this.orderService.getOrdersList().subscribe(
+         data => {
+            this.orders = data;
+       //     console.log(this.orders);
+          },
+          err => console.log(err)
+        );
+    }
+  
   }
 
 
@@ -62,5 +78,9 @@ export class OrderListComponent implements OnInit, OnDestroy {
     if (this.ordersSubscription) {
      this.ordersSubscription.unsubscribe();
    }
+  }
+
+  hasRequiredRoles(): boolean {
+    return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'CONSULTANT');
   }
 }

@@ -1,10 +1,16 @@
 export const environment = {
 production: false,
 apiURL: 'https://apimocha.com/vsvdev/orders',
-cognito: {
-    region: 'your-aws-region', 
-    userPoolId: 'your-user-pool-id', 
-    userPoolClientId: 'your-web-client-id', 
-    identityPoolId: 'your-identity-pool-id', 
-  }
+config: {
+  authority: '',              
+  redirectUrl: 'http://localhost:4200/home',  //window.location.origin,
+  postLogoutRedirectUri: 'http://localhost:4200/home', //window.location.origin,
+  clientId: '',
+  scope: 'email openid phone', 
+  responseType: 'code',
+  silentRenew: true,
+  useRefreshToken: true,
+  renewTimeBeforeTokenExpiresInSeconds: 30,
+
+}
 };
