@@ -15,12 +15,12 @@ export class OrderCityComponent implements OnInit, OnDestroy {
   orders: DeliveryOrder[] = [];
   city: string = "all"
   private ordersSubscription: Subscription = new Subscription();
- 
+
    constructor(private orderService: OrderService) {}
 
 
   ngOnInit(): void {
-    this.ordersSubscription = 
+    this.ordersSubscription =
   this.orderService.getIndexOrder(this.city).subscribe(
      data => {
         this.orders = data;
@@ -33,20 +33,23 @@ export class OrderCityComponent implements OnInit, OnDestroy {
 
   searchByCity() {
     if(this.city && this.city!=="all"){
-      this.ordersSubscription = 
+      this.ordersSubscription =
       this.orderService.getIndexOrder(this.city).subscribe(
          data => {
             this.orders = data;
          //   console.log(this.orders);
           },
-          
+
           err => console.log(err)
         );
     }
-    
+
     }
 
-  
+hasRequiredRolestoEdit(): boolean {
+    return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'DELIVER') || this.groups.some(group => group === 'CONSULTANT');
+  }
+
   ngOnDestroy(): void {
     if (this.ordersSubscription) {
       this.ordersSubscription.unsubscribe();

@@ -10,26 +10,27 @@
   </nav>
 
 <div class="container mt-4">
-    <table class="table table-dark text-center">
-        <thead>
-          <tr>
-            <th scope="col">Email</th>
-            <th scope="col">City</th>
-            <th scope="col">Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-            
-            @for (order of orders; track order) {
-                <tr> 
-                <td>{{ order.email }}</td>
-                <td>{{ order.city }}</td>
-                <td><button class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
-            </tr> 
-            } 
-           
-        </tbody>
-      </table>
+  <table class="table table-dark text-center">
+    <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+      <th *ngIf="hasRequiredRolestoEdit()" scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    @for (order of orders; track order) {
+    <tr>
+      <td>{{ order.email }}</td>
+      <td>{{ order.city }}</td>
+      <td><button *ngIf="hasRequiredRolestoEdit()" class="btn btn-outline-warning" routerLink="/update/{{order.email}}"><i class="far fa-edit"></i> Edit</button></td>
+
+    </tr>
+    }
+
+    </tbody>
+  </table>
 </div>
 
