@@ -87,4 +87,8 @@ export class OrderListComponent implements OnInit, OnDestroy {
   hasRequiredRolestoDelete(): boolean {
     return this.groups.some(group => group === 'ADMIN') || this.groups.some(group => group === 'CONSULTANT');
   }
+
+  showCreateOrder(){
+    return this.groups.length==1 && this.groups.some(group => group === 'USER')
+  }
 }
