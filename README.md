@@ -1,6 +1,6 @@
 # Aws
 
-to use with API Gateway Authorizer with IdToken and group based access
+to use with function url or API Gateway without Authorizer with AccessToken and group based access
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
 
