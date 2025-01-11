@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DeliveryOrder } from '../../model/deliveryOrder';
 import { Subscription } from 'rxjs';
 import { OrderService } from '../../service/order.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'sv-order-city',
@@ -15,11 +16,13 @@ export class OrderCityComponent implements OnInit, OnDestroy {
   orders: DeliveryOrder[] = [];
   city: string = "all"
   private ordersSubscription: Subscription = new Subscription();
+groups:string[] =[];
 
-   constructor(private orderService: OrderService) {}
+   constructor(private orderService: OrderService, private auth:AuthService) {}
 
 
   ngOnInit(): void {
+this.groups = this.auth.groups;
     this.ordersSubscription =
   this.orderService.getIndexOrder(this.city).subscribe(
      data => {
