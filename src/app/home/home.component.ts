@@ -13,18 +13,19 @@ export class HomeComponent {
   constructor(private auth:AuthService) { }
 
   isAuthent = false;
-
+  email:string = '';
   groups:string[] =[];
 
   ngOnInit() {
     this.groups = this.auth.groups;
     this.isAuthent = this.auth.isAuthent;
+    this.email = this.auth.email;
   }
 
 
 }
 
- 
+
 
 
 
