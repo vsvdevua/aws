@@ -1,16 +1,25 @@
 <h1>Water delivery</h1>
 
-<h5>To work with API log in!!!</h5>
 
+<div *ngIf="!isAuthent">
+<h2>To work with API log in!!!</h2>
+    
+</div>
 
   <div *ngIf="isAuthent">
 
-    
+    <h3>Hello : {{ email }}</h3>
   
-    <h3>Is Authenticated: {{ isAuthent }}</h3>
+    <!--<h3>Is Authenticated: {{ isAuthent }}</h3>-->
   
     
   </div>
 
-
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <img src="./assets/pict/water_jpg.jpg" alt="Water Delivery Advertisement" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
   
