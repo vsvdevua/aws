@@ -1,4 +1,5 @@
 export const environment = {
 production: false,
-apiURL:'http://127.0.0.1:3000/orders'
+apiURL: process.env['API_URL'] || 'https://default-api-url/',
+
 };
