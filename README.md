@@ -40,15 +40,15 @@ POST_ONE
 
 ## Docker
 
-docker build -t angular-app:latest .
+docker build -t kangular-app:latest .
 
-docker run -p 8080:80 angular-app:latest
+docker run -p 8080:80 kangular-app:latest
 
-docker tag angular-app:latest <your-dockerhub-username>/angular-app:latest
+docker tag angular-app:latest <your-dockerhub-username>/kangular-app:latest
 
 docker login
 
-docker push <your-dockerhub-username>/angular-app:latest
+docker push <your-dockerhub-username>/kangular-app:latest
 
 
 
