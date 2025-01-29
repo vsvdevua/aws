@@ -10,7 +10,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class OrderService {
 
-  apiURL = environment.apiURL;
+apiURL = environment.apiURL;
+getAll = environment.getAll;
+getOne = environment.getOne;
+postOne = environment.postOne;
+
   constructor(private http: HttpClient) { }
 
 
@@ -19,13 +23,21 @@ export class OrderService {
    // tap(response => console.log('Raw response:', response)),
    // map(response => JSON.parse(response) as DeliveryOrder[])
 //);
-return this.http.get<DeliveryOrder[]>(this.apiURL);
+//normal
+//return this.http.get<DeliveryOrder[]>(this.apiURL);
+
+return this.http.get<DeliveryOrder[]>(this.getAll);
   }
 
 
   public getOrderByMail(email: string): Observable<DeliveryOrder> {
-    return this.http
-      .get<DeliveryOrder>(this.apiURL + '/' + email);
+
+//return this.http
+    //  .get<DeliveryOrder>(this.apiURL + '/' + email);
+
+
+ return this.http
+      .get<DeliveryOrder>(this.getOne + '/' + email);
   }
 
   public getIndexOrder(city: string): Observable<DeliveryOrder[]> {
@@ -42,7 +54,11 @@ return this.http.get<DeliveryOrder[]>(this.apiURL);
 
  public createOrder(order: DeliveryOrder): Observable<DeliveryOrder> {
  // console.log('Order to create:', order);  // Log the order being sent
- return this.http.post<DeliveryOrder>(this.apiURL, order);
+//normal
+// return this.http.post<DeliveryOrder>(this.apiURL, order);
+
+
+ return this.http.post<DeliveryOrder>(this.postOne, order);
   //return this.http.post<DeliveryOrder>(this.apiURL, order).pipe(
    // tap({
      // next: (response) => {
@@ -63,7 +79,7 @@ return this.http.get<DeliveryOrder[]>(this.apiURL);
 
   public  updateOrder(order:DeliveryOrder): Observable<DeliveryOrder> {
    // return this.http.post<DeliveryOrder>(this.apiURL, order);
-    
+
    return this.http.put<DeliveryOrder>(`${this.apiURL}/${order.email}`, order);
    //.pipe(
   //  map((response: string) => {

@@ -21,6 +21,34 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+
+
+
 Base crud version
 
 `ng build --configuration=development`
+
+
+
+Add 3 variables
+
+GET_ALL
+
+GET_ONE
+
+POST_ONE
+
+## Docker
+
+docker build -t angular-app:latest .
+
+docker run -p 8080:80 angular-app:latest
+
+docker tag angular-app:latest <your-dockerhub-username>/angular-app:latest
+
+docker login
+
+docker push <your-dockerhub-username>/angular-app:latest
+
+
+
