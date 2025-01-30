@@ -1,4 +1,5 @@
 export const environment = {
 production: true,
-apiURL: 'https://apimocha.com/vsvdev/orders',
+// @ts-ignore
+apiURL: window['env'].API_URL,
 };

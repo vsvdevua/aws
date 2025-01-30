@@ -26,18 +26,24 @@ Base crud version
 `ng build --configuration=development`
 
 
-Add variable
+ng build --configuration=development
 
-API_URL
+ENV_API_URL
 
 ## Docker
 
-docker build -t angular-app:latest .
+docker build -t k8angular-app:latest .
 
-docker run -p 8080:80 angular-app:latest
+docker run -p 8080:80 kangular-app:latest
 
-docker tag angular-app:latest <your-dockerhub-username>/angular-app:latest
+docker run --env ENV_API_URL=http://localhost:9999 -p 8080:80 k8angular-app:latest
+
+docker tag k8angular-app:latest vsvdev/k8angular-app:latest
 
 docker login
 
-docker push <your-dockerhub-username>/angular-app:latest
+docker push /k8angular-app:latest
+
+ENV_API_URL
+
+Restart pod to apply new configurations without rebuilding.

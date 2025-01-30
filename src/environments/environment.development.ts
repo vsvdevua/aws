@@ -1,5 +1,6 @@
 export const environment = {
 production: false,
-apiURL: process.env['API_URL'] || 'https://default-api-url/',
+// @ts-ignore
+apiURL: window['env'].API_URL,
 
 };
