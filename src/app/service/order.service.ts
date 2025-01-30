@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DeliveryOrder } from '../model/deliveryOrder';
 import { Observable } from 'rxjs';
@@ -6,16 +6,19 @@ import { environment } from '../../environments/environment';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+providedIn: 'root'
 })
 export class OrderService {
 
 apiURL = environment.apiURL;
-getAll = environment.getAll;
-getOne = environment.getOne;
-postOne = environment.postOne;
+header:HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+constructor(private http: HttpClient) {
+    this.header =   new HttpHeaders({
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+    })
+  }
 
 
  public getOrdersList(): Observable<DeliveryOrder[]> {
@@ -26,7 +29,7 @@ postOne = environment.postOne;
 //normal
 //return this.http.get<DeliveryOrder[]>(this.apiURL);
 
-return this.http.get<DeliveryOrder[]>(this.getAll);
+return this.http.get<DeliveryOrder[]>(this.apiURL+ '/allOrders');
   }
 
 
@@ -37,7 +40,7 @@ return this.http.get<DeliveryOrder[]>(this.getAll);
 
 
  return this.http
-      .get<DeliveryOrder>(this.getOne + '/' + email);
+      .get<DeliveryOrder>(this.apiURL + '/getDeliveryOrderById' + '/' + email);
   }
 
   public getIndexOrder(city: string): Observable<DeliveryOrder[]> {
@@ -58,7 +61,7 @@ return this.http.get<DeliveryOrder[]>(this.getAll);
 // return this.http.post<DeliveryOrder>(this.apiURL, order);
 
 
- return this.http.post<DeliveryOrder>(this.postOne, order);
+ return this.http.post<DeliveryOrder>(this.apiURL + '/saveOrder', order);
   //return this.http.post<DeliveryOrder>(this.apiURL, order).pipe(
    // tap({
      // next: (response) => {

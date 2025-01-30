@@ -21,22 +21,78 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Prepare to docker image env
+
+create in assets:
+
+env.js
+
+```text
+(function(window) {
+    window.env = window.env || {};
+  
+    // Environment variables
+    window["env"].API_URL = 'http://localhost:8000';
+  })(this);
+```
+
+env.template.js
 
 
+```text
+(function(window) {
+    window.env = window.env || {};
+  
+    // Environment variables
+    window["env"].API_URL = '${ENV_API_URL}';
+  })(this);
+```
 
-Base crud version
+
+add to app/index.html
+
+```html
+  <!-- Add placeholders for environment variables -->
+    <script src="assets/env.js"></script>
+```
+
+environments/
+
+environment.ts
+
+```typo3_typoscript
+export const environment = {
+production: false,
+// @ts-ignore
+apiURL: window['env'].API_URL,
+};
+```
+environment.development.ts
+
+```typo3_typoscript
+export const environment = {
+production: false,
+// @ts-ignore
+apiURL: window['env'].API_URL,
+};
+```
+Dockerfile
+
+```shell
+FROM nginx:alpine
+COPY ./dist/aws/browser /usr/share/nginx/html
+#COPY ./assets/env.template.js /usr/share/nginx/html/assets/env.template.js
+ENV ENV_API_URL=http://localhost:9000
+CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+```
+
+
+## Base crud version
 
 `ng build --configuration=development`
 
 
-
-Add 3 variables
-
-GET_ALL
-
-GET_ONE
-
-POST_ONE
+ENV_API_URL
 
 ## Docker
 
@@ -44,11 +100,19 @@ docker build -t kangular-app:latest .
 
 docker run -p 8080:80 kangular-app:latest
 
-docker tag angular-app:latest <your-dockerhub-username>/kangular-app:latest
+docker run --env ENV_API_URL=http://localhost:9999 -p 8080:80 kangular-app:latest
+
+docker tag kangular-app:latest vsvdev/kangular-app:latest
 
 docker login
 
 docker push <your-dockerhub-username>/kangular-app:latest
+
+ENV_API_URL
+
+Restart pod to apply new configurations without rebuilding.
+
+
 
 
 
