@@ -102,11 +102,11 @@ docker run -p 8080:80 kangular-app:latest
 
 docker run --env ENV_API_URL=http://localhost:9999 -p 8080:80 kangular-app:3
 
-docker tag kangular-app:latest vsvdev/kangular-app:latest
+docker tag kangular-app:4 vsvdevua/kangular-app:4
 
 docker login
 
-docker push <your-dockerhub-username>/kangular-app:latest
+docker push vsvdevua/kangular-app:4
 
 ENV_API_URL
 
