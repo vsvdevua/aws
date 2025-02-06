@@ -87,7 +87,7 @@ CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js >
 ```
 
 
-## Base crud version
+## Knative service name resolution
 
 `ng build --configuration=development`
 
