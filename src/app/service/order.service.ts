@@ -29,7 +29,10 @@ constructor(private http: HttpClient) {
 //normal
 //return this.http.get<DeliveryOrder[]>(this.apiURL);
 
-return this.http.get<DeliveryOrder[]>(this.apiURL+ '/allOrders');
+var url = this.apiURL+ 'allOrders';
+
+console.log('*********** The API is :', url);
+return this.http.get<DeliveryOrder[]>(url);
   }
 
 
@@ -40,7 +43,7 @@ return this.http.get<DeliveryOrder[]>(this.apiURL+ '/allOrders');
 
 
  return this.http
-      .get<DeliveryOrder>(this.apiURL + '/getDeliveryOrderById' + '/' + email);
+      .get<DeliveryOrder>(this.apiURL + 'getDeliveryOrderById' + '/' + email);
   }
 
   public getIndexOrder(city: string): Observable<DeliveryOrder[]> {
@@ -61,7 +64,7 @@ return this.http.get<DeliveryOrder[]>(this.apiURL+ '/allOrders');
 // return this.http.post<DeliveryOrder>(this.apiURL, order);
 
 
- return this.http.post<DeliveryOrder>(this.apiURL + '/saveOrder', order);
+ return this.http.post<DeliveryOrder>(this.apiURL + 'saveOrder', order);
   //return this.http.post<DeliveryOrder>(this.apiURL, order).pipe(
    // tap({
      // next: (response) => {

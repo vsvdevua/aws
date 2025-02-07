@@ -96,17 +96,17 @@ ENV_API_URL
 
 ## Docker
 
-docker build -t kangular-app:6 .
+docker build -t kangular-app:9 .
 
-docker run -p 8080:80 kangular-app:6
+docker run -p 8080:80 kangular-app:8
 
 
 
-docker tag kangular-app:6 vsvdevua/kangular-app:6
+docker tag kangular-app:9 vsvdevua/kangular-app:9
 
 docker login
 
-docker push vsvdevua/kangular-app:6
+docker push vsvdevua/kangular-app:9
 
 ENV_API_URL
 
